@@ -1,5 +1,5 @@
 @AbapCatalog.viewEnhancementCategory: [#NONE]
-@AccessControl.authorizationCheck: #CHECK
+@AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Partner'
 @Metadata.allowExtensions: true
 @Metadata.ignorePropagatedAnnotations: false
@@ -8,9 +8,9 @@
     sizeCategory: #S,
     dataClass: #MIXED
 }
-define root view entity ZXI_I_PartnerTP
+define root view entity ZXI_I_PARTNERTPDRAFT
   as select from ZXI_I_Partner
-  composition [0..*] of ZXI_I_PartnerRoleTP as _PartnerRoles
+  composition [0..*] of ZXI_I_PARTNERROLETPDRAFT as _PartnerRoles
 {
   key Uuid,
       Partner,
@@ -19,10 +19,8 @@ define root view entity ZXI_I_PartnerTP
       FirstName,
       LastName,
       TimeStamp,
-      ChangedBy,
       /* Associations */
       _AcademicTitle,
       _FormOfAddress,
-      _PartnerRoles,
-      _ChangedBy
+      _PartnerRoles
 }

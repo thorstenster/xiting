@@ -8,17 +8,15 @@
     sizeCategory: #S,
     dataClass: #MIXED
 }
-define view entity ZXI_I_PartnerRoleTP
+define view entity ZXI_I_PARTNERROLETPDRAFT
   as select from ZXI_I_PARTNERROLE
-  association to parent ZXI_I_PartnerTP as _Partner on $projection.ParentUuid = _Partner.Uuid
+  association to parent ZXI_I_PartnerTPDraft as _Partner on $projection.ParentUuid = _Partner.Uuid
 {
   key    Uuid,
          Partner,
          PartnerRole,
-         ChangedBy,
          TimeStamp,
          ParentUuid,
          /* Associations */
-         _Partner,
-         _ChangedBy
+         _Partner
 }

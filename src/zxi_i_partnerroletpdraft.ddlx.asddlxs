@@ -13,7 +13,7 @@
         value: 'PartnerRole'
     }
 }
-annotate view ZXI_I_PartnerRoleTP with
+annotate view ZXI_I_PARTNERROLETPDRAFT with
 {
   @UI.facet: [{
       purpose: #STANDARD,
@@ -26,8 +26,6 @@ annotate view ZXI_I_PartnerRoleTP with
   @UI.lineItem:       [{ position: 20 }]
   @UI.identification: [{ position: 20 }]
   PartnerRole;
-  @UI.identification: [{ position: 25 }]
-  ChangedBy;
   @UI.identification: [{ position: 30 }]
   TimeStamp;
   @UI.identification: [{ position: 40 }]

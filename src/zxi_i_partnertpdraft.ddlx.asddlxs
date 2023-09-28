@@ -13,7 +13,7 @@
         value: 'Partner'
     }
 }
-annotate view ZXI_I_PartnerTP with
+annotate view ZXI_I_PARTNERTPDRAFT with
 {
   @UI.facet: [{
       purpose: #STANDARD,
@@ -44,8 +44,6 @@ annotate view ZXI_I_PartnerTP with
   @UI.lineItem:       [{ position: 60 }]
   @UI.identification: [{ position: 60 }]
   LastName;
-  @UI.identification: [{ position: 65 }]
-  ChangedBy;
   @UI.identification: [{ position: 70 }]
   TimeStamp;
   @UI.identification: [{ position: 80 }]

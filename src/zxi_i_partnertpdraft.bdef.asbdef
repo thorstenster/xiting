@@ -1,30 +1,25 @@
-managed implementation in class zbp_xi_i_partnertp unique;
+managed implementation in class zbp_xi_partnertpdraft unique;
 strict ( 1 );
 with draft;
 
-define behavior for ZXI_I_PartnerTP alias Partner
+define behavior for ZXI_I_PartnerTPDraft alias Partner
 persistent table zxipartner
-draft table zxipartnerdr
+draft table zxipartnerd
 lock master total etag TimeStamp
 authorization master ( instance )
 etag master TimeStamp
 {
   field ( numbering : managed ) Uuid;
-  field ( readonly ) Uuid, TimeStamp, Partner, ChangedBy;
-  field ( mandatory ) FirstName, LastName;
-
-  action partnerLock result [1] $self;
-
-  validation validatePartner on save { create; update; field FirstName; }
+  field ( readonly ) Uuid, TimeStamp, Partner;
   determination determinePartner on save { create; }
-  create ( precheck );
-  update ( precheck );
+  create;
+  update;
   delete;
 
   draft action Edit;
   draft action Resume;
   draft action Discard;
-  draft action Activate optimized;
+  draft action Activate;
   draft determine action Prepare;
 
   association _PartnerRoles { create; with draft; }
@@ -36,21 +31,21 @@ etag master TimeStamp
       Title         = title;
       FirstName     = name_first;
       LastName      = name_last;
-      ChangedBy     = changed_by;
       TimeStamp     = timestamp;
       Uuid          = guid;
     }
 }
 
-define behavior for ZXI_I_PartnerRoleTP alias PartnerRole
+define behavior for ZXI_I_PartnerRoleTPDraft alias PartnerRole
 persistent table zxipartnerrole
-draft table zxipartnerroledr
+draft table zxipartnerroled
+// draft table zxipartnerroled
 lock dependent by _Partner
 authorization dependent by _Partner
 etag master TimeStamp
 {
   field ( numbering : managed ) Uuid;
-  field ( readonly ) Partner, Uuid, ParentUuid, ChangedBy, TimeStamp;
+  field ( readonly ) Partner, Uuid, ParentUuid, TimeStamp;
   determination determineRole on save { create; }
   update;
   delete;
@@ -61,7 +56,6 @@ etag master TimeStamp
     {
       Partner     = PARTNER;
       PartnerRole = PARTNERROLE;
-      ChangedBy   = changed_by;
       TimeStamp   = TIMESTAMP;
       Uuid        = GUID;
       ParentUuid  = PARENT_GUID;

@@ -1,0 +1,11 @@
+@EndUserText.label: 'Form of Address'
+@MappingRole: true
+define role ZXI_I_FORMOFADDRESSVH {
+    grant 
+        select
+            on
+                ZXI_I_FORMOFADDRESSVH
+                    where
+                        (FormOfAddress) = aspect pfcg_auth(ZXIPARTNER, ZXI_TITLE );
+                        
+}

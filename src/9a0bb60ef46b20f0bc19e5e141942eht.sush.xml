@@ -16,7 +16,98 @@
      <OBJECT>S_SERVICE</OBJECT>
      <OKFLAG>X</OKFLAG>
     </USOBX>
+    <USOBX>
+     <NAME>9A0BB60EF46B20F0BC19E5E141942E</NAME>
+     <TYPE>HT</TYPE>
+     <OBJECT>S_TABU_NAM</OBJECT>
+     <OKFLAG>Y</OKFLAG>
+    </USOBX>
+    <USOBX>
+     <NAME>9A0BB60EF46B20F0BC19E5E141942E</NAME>
+     <TYPE>HT</TYPE>
+     <OBJECT>ZXIPARTNER</OBJECT>
+     <OKFLAG>Y</OKFLAG>
+    </USOBX>
    </USOBX>
+   <USOBT>
+    <USOBT>
+     <NAME>9A0BB60EF46B20F0BC19E5E141942E</NAME>
+     <TYPE>HT</TYPE>
+     <OBJECT>S_TABU_NAM</OBJECT>
+     <FIELD>ACTVT</FIELD>
+     <LOW>02</LOW>
+    </USOBT>
+    <USOBT>
+     <NAME>9A0BB60EF46B20F0BC19E5E141942E</NAME>
+     <TYPE>HT</TYPE>
+     <OBJECT>S_TABU_NAM</OBJECT>
+     <FIELD>ACTVT</FIELD>
+     <LOW>03</LOW>
+    </USOBT>
+    <USOBT>
+     <NAME>9A0BB60EF46B20F0BC19E5E141942E</NAME>
+     <TYPE>HT</TYPE>
+     <OBJECT>S_TABU_NAM</OBJECT>
+     <FIELD>ACTVT</FIELD>
+     <LOW>08</LOW>
+    </USOBT>
+    <USOBT>
+     <NAME>9A0BB60EF46B20F0BC19E5E141942E</NAME>
+     <TYPE>HT</TYPE>
+     <OBJECT>S_TABU_NAM</OBJECT>
+     <FIELD>TABLE</FIELD>
+     <LOW>ZXI_I_PARTNER</LOW>
+    </USOBT>
+    <USOBT>
+     <NAME>9A0BB60EF46B20F0BC19E5E141942E</NAME>
+     <TYPE>HT</TYPE>
+     <OBJECT>S_TABU_NAM</OBJECT>
+     <FIELD>TABLE</FIELD>
+     <LOW>ZXI_I_PARTNERTP</LOW>
+    </USOBT>
+    <USOBT>
+     <NAME>9A0BB60EF46B20F0BC19E5E141942E</NAME>
+     <TYPE>HT</TYPE>
+     <OBJECT>ZXIPARTNER</OBJECT>
+     <FIELD>ACTVT</FIELD>
+     <LOW>01</LOW>
+    </USOBT>
+    <USOBT>
+     <NAME>9A0BB60EF46B20F0BC19E5E141942E</NAME>
+     <TYPE>HT</TYPE>
+     <OBJECT>ZXIPARTNER</OBJECT>
+     <FIELD>ACTVT</FIELD>
+     <LOW>02</LOW>
+    </USOBT>
+    <USOBT>
+     <NAME>9A0BB60EF46B20F0BC19E5E141942E</NAME>
+     <TYPE>HT</TYPE>
+     <OBJECT>ZXIPARTNER</OBJECT>
+     <FIELD>ACTVT</FIELD>
+     <LOW>03</LOW>
+    </USOBT>
+    <USOBT>
+     <NAME>9A0BB60EF46B20F0BC19E5E141942E</NAME>
+     <TYPE>HT</TYPE>
+     <OBJECT>ZXIPARTNER</OBJECT>
+     <FIELD>ACTVT</FIELD>
+     <LOW>06</LOW>
+    </USOBT>
+    <USOBT>
+     <NAME>9A0BB60EF46B20F0BC19E5E141942E</NAME>
+     <TYPE>HT</TYPE>
+     <OBJECT>ZXIPARTNER</OBJECT>
+     <FIELD>ZXI_TITLE</FIELD>
+     <LOW>0001</LOW>
+    </USOBT>
+    <USOBT>
+     <NAME>9A0BB60EF46B20F0BC19E5E141942E</NAME>
+     <TYPE>HT</TYPE>
+     <OBJECT>ZXIPARTNER</OBJECT>
+     <FIELD>ZXI_TITLE</FIELD>
+     <LOW>0002</LOW>
+    </USOBT>
+   </USOBT>
    <USOBX_EXT>
     <item>
      <OBJECT>S_SERVICE</OBJECT>
@@ -32,7 +123,102 @@
      <EXCEP_TX>Okay</EXCEP_TX>
      <EXCEP_ICON>@08@</EXCEP_ICON>
     </item>
+    <item>
+     <OBJECT>S_TABU_NAM</OBJECT>
+     <TTEXT>Tabellenzugriff über generische Standardtools</TTEXT>
+     <OCLSS>BC_A</OCLSS>
+     <OKFLAG>Y</OKFLAG>
+     <DEVCLASS>SVIM</DEVCLASS>
+     <PS_POSID>BC-CUS-TOL-TME</PS_POSID>
+     <CI_TEXT>prüfen/pflegen</CI_TEXT>
+     <CH_TEXT>prüfen</CH_TEXT>
+     <PR_TEXT>Ja</PR_TEXT>
+     <EXCEP>3</EXCEP>
+     <EXCEP_TX>Okay</EXCEP_TX>
+     <EXCEP_ICON>@08@</EXCEP_ICON>
+    </item>
+    <item>
+     <OBJECT>ZXIPARTNER</OBJECT>
+     <TTEXT>ZXIPARTNER</TTEXT>
+     <OCLSS>CPAE</OCLSS>
+     <OKFLAG>Y</OKFLAG>
+     <DEVCLASS>ZXI</DEVCLASS>
+     <CI_TEXT>prüfen/pflegen</CI_TEXT>
+     <CH_TEXT>prüfen</CH_TEXT>
+     <PR_TEXT>Ja</PR_TEXT>
+     <EXCEP>3</EXCEP>
+     <EXCEP_TX>Okay</EXCEP_TX>
+     <EXCEP_ICON>@08@</EXCEP_ICON>
+    </item>
    </USOBX_EXT>
+   <USOBT_EXT>
+    <item>
+     <OBJECT>S_TABU_NAM</OBJECT>
+     <TTEXT>Tabellenzugriff über generische Standardtools</TTEXT>
+     <FIELD>ACTVT</FIELD>
+     <LOW>02</LOW>
+    </item>
+    <item>
+     <OBJECT>S_TABU_NAM</OBJECT>
+     <TTEXT>Tabellenzugriff über generische Standardtools</TTEXT>
+     <FIELD>ACTVT</FIELD>
+     <LOW>03</LOW>
+    </item>
+    <item>
+     <OBJECT>S_TABU_NAM</OBJECT>
+     <TTEXT>Tabellenzugriff über generische Standardtools</TTEXT>
+     <FIELD>ACTVT</FIELD>
+     <LOW>08</LOW>
+    </item>
+    <item>
+     <OBJECT>S_TABU_NAM</OBJECT>
+     <TTEXT>Tabellenzugriff über generische Standardtools</TTEXT>
+     <FIELD>TABLE</FIELD>
+     <LOW>ZXI_I_PARTNER</LOW>
+    </item>
+    <item>
+     <OBJECT>S_TABU_NAM</OBJECT>
+     <TTEXT>Tabellenzugriff über generische Standardtools</TTEXT>
+     <FIELD>TABLE</FIELD>
+     <LOW>ZXI_I_PARTNERTP</LOW>
+    </item>
+    <item>
+     <OBJECT>ZXIPARTNER</OBJECT>
+     <TTEXT>ZXIPARTNER</TTEXT>
+     <FIELD>ACTVT</FIELD>
+     <LOW>01</LOW>
+    </item>
+    <item>
+     <OBJECT>ZXIPARTNER</OBJECT>
+     <TTEXT>ZXIPARTNER</TTEXT>
+     <FIELD>ACTVT</FIELD>
+     <LOW>02</LOW>
+    </item>
+    <item>
+     <OBJECT>ZXIPARTNER</OBJECT>
+     <TTEXT>ZXIPARTNER</TTEXT>
+     <FIELD>ACTVT</FIELD>
+     <LOW>03</LOW>
+    </item>
+    <item>
+     <OBJECT>ZXIPARTNER</OBJECT>
+     <TTEXT>ZXIPARTNER</TTEXT>
+     <FIELD>ACTVT</FIELD>
+     <LOW>06</LOW>
+    </item>
+    <item>
+     <OBJECT>ZXIPARTNER</OBJECT>
+     <TTEXT>ZXIPARTNER</TTEXT>
+     <FIELD>ZXI_TITLE</FIELD>
+     <LOW>0001</LOW>
+    </item>
+    <item>
+     <OBJECT>ZXIPARTNER</OBJECT>
+     <TTEXT>ZXIPARTNER</TTEXT>
+     <FIELD>ZXI_TITLE</FIELD>
+     <LOW>0002</LOW>
+    </item>
+   </USOBT_EXT>
   </asx:values>
  </asx:abap>
 </abapGit>

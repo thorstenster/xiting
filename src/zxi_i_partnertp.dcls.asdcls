@@ -1,0 +1,11 @@
+@EndUserText.label: 'Partner'
+@MappingRole: true
+define role ZXI_I_PARTNERTP {
+    grant
+        select
+            on
+                ZXI_I_PARTNERTP
+                    where
+                        inheriting conditions from entity ZXI_I_Partner;
+                        
+}
