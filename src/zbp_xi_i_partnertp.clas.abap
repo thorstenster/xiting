@@ -1,0 +1,5 @@
+CLASS zbp_xi_i_partnertp DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zxi_i_partnertp.
+ENDCLASS.
+
+CLASS zbp_xi_i_partnertp IMPLEMENTATION.
+ENDCLASS.

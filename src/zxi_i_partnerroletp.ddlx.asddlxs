@@ -1,0 +1,35 @@
+@Metadata.layer: #PARTNER
+@UI.headerInfo: {
+    typeName: 'Rolle',
+    typeNamePlural: 'Rollen',
+    title: {
+        type: #STANDARD,
+        label: 'Rolle',
+        value: 'PartnerRole'
+    },
+    description: {
+        type: #STANDARD,
+        label: 'Rolle',
+        value: 'PartnerRole'
+    }
+}
+annotate view ZXI_I_PartnerRoleTP with
+{
+  @UI.facet: [{
+      purpose: #STANDARD,
+      position: 10,
+      type: #IDENTIFICATION_REFERENCE
+  }]
+  @UI.lineItem:       [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  Partner;
+  @UI.lineItem:       [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  PartnerRole;
+  @UI.identification: [{ position: 30 }]
+  TimeStamp;
+  @UI.identification: [{ position: 40 }]
+  Uuid;
+  @UI.identification: [{ position: 50 }]
+  ParentUuid;
+}
