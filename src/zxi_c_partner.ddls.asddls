@@ -11,8 +11,17 @@
 define root view entity ZXI_C_PARTNER
   provider contract transactional_query
   as projection on ZXI_I_PartnerTP
+  association [0..1] to ZXI_I_PARTNERVH as _PartnerVH on $projection.Partner = _PartnerVH.Partner
 {
   key Uuid,
+      @ObjectModel.foreignKey.association: '_PartnerVH'
+      @Consumption.valueHelpDefinition: [{
+          entity: {
+              name: 'ZXI_I_PartnerVH',
+              element: 'Partner'
+          },
+          distinctValues: true
+      }]
       Partner,
       Title,
       AcademicTitle,
@@ -28,5 +37,6 @@ define root view entity ZXI_C_PARTNER
       _ChangedBy,
       _CreatedBy,
       _FormOfAddress,
+      _PartnerVH,
       _PartnerRoles : redirected to composition child ZXI_C_PARTNERROLE
 }

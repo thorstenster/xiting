@@ -6,4 +6,5 @@ define service ZXI_PARTNER_SERVICE {
   expose ZXI_I_FormOfAddressVH as TitleVH;
   expose ZXI_I_AcademicTitleVH as AcademicTitleVH;
   expose ZXI_I_User            as UserVH;
+  expose ZXI_I_PARTNERVH       as PartnerVH;
 }
