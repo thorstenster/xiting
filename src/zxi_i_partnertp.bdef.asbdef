@@ -5,15 +5,16 @@ with draft;
 define behavior for ZXI_I_PartnerTP alias Partner
 persistent table zxipartner
 draft table zxipartnerdr
-lock master total etag TimeStamp
+lock master total etag ChangedAt
 authorization master ( instance )
-etag master TimeStamp
+etag master ChangedAt
 {
   field ( numbering : managed ) Uuid;
-  field ( readonly ) Uuid, TimeStamp, Partner, ChangedBy;
+  field ( readonly ) Uuid, Partner, IsLocked, CreatedAt, CreatedBy, ChangedAt, ChangedBy;
   field ( mandatory ) FirstName, LastName;
 
-  action partnerLock result [1] $self;
+  action ( features : instance ) partnerLock result [1] $self;
+  action ( features : instance ) partnerUnlock result [1] $self;
 
   validation validatePartner on save { create; update; field FirstName; }
   determination determinePartner on save { create; }
@@ -21,24 +22,28 @@ etag master TimeStamp
   update ( precheck );
   delete;
 
+
   draft action Edit;
   draft action Resume;
   draft action Discard;
   draft action Activate optimized;
-  draft determine action Prepare;
+  draft determine action Prepare { validation validatePartner; }
 
   association _PartnerRoles { create; with draft; }
 
   mapping for zxipartner
     {
+      Uuid          = guid;
       Partner       = partner;
-      AcademicTitle = acad_title;
       Title         = title;
+      AcademicTitle = acad_title;
       FirstName     = name_first;
       LastName      = name_last;
+      IsLocked      = locked;
+      CreatedBy     = created_by;
+      CreatedAt     = created_at;
       ChangedBy     = changed_by;
-      TimeStamp     = timestamp;
-      Uuid          = guid;
+      ChangedAt     = changed_at;
     }
 }
 
@@ -47,10 +52,10 @@ persistent table zxipartnerrole
 draft table zxipartnerroledr
 lock dependent by _Partner
 authorization dependent by _Partner
-etag master TimeStamp
+etag master ChangedAt
 {
   field ( numbering : managed ) Uuid;
-  field ( readonly ) Partner, Uuid, ParentUuid, ChangedBy, TimeStamp;
+  field ( readonly ) Uuid, ParentUuid, CreatedAt, CreatedBy, ChangedAt, ChangedBy;
   determination determineRole on save { create; }
   update;
   delete;
@@ -59,11 +64,12 @@ etag master TimeStamp
 
   mapping for zxipartnerrole
     {
-      Partner     = PARTNER;
-      PartnerRole = PARTNERROLE;
-      ChangedBy   = changed_by;
-      TimeStamp   = TIMESTAMP;
       Uuid        = GUID;
+      PartnerRole = PARTNERROLE;
+      CreatedAt   = created_at;
+      CreatedBy   = created_by;
+      ChangedAt   = changed_at;
+      ChangedBy   = changed_by;
       ParentUuid  = PARENT_GUID;
     }
 }

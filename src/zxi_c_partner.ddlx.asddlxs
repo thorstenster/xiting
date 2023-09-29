@@ -1,7 +1,7 @@
-@Metadata.layer: #PARTNER
+@Metadata.layer: #CUSTOMER
 @UI.headerInfo: {
     typeName: 'Partner',
-    typeNamePlural: 'Partber',
+    typeNamePlural: 'Partner',
     title: {
         type: #STANDARD,
         label: 'Partner',
@@ -13,35 +13,29 @@
         value: 'Partner'
     }
 }
-annotate view ZXI_C_PARTNER with
+@UI.presentationVariant: [{
+    sortOrder: [{
+        by: 'Partner',
+        direction: #ASC
+    }]
+}]
+@Search.searchable: true
+annotate entity ZXI_C_PARTNER with
 {
-  @UI.facet: [{
-      purpose: #STANDARD,
-      position: 10,
-      type: #IDENTIFICATION_REFERENCE
-  },
-  {
-      purpose: #STANDARD,
-      position: 20,
-      targetElement: '_PartnerRoles',
-      type: #LINEITEM_REFERENCE
-  }]
-  @UI.selectionField: [{ position: 10 }]
-  @UI.lineItem:       [{ position: 10 }]
-  @UI.identification: [{ position: 10 }]
+  @Search.defaultSearchElement: true
+  @Search.fuzzinessThreshold: 0.8
   Partner;
-  @UI.lineItem:       [{ position: 20 }]
-  @UI.identification: [{ position: 20 }]
+  @Search.defaultSearchElement: true
+  @Search.fuzzinessThreshold: 0.8
   Title;
-  @UI.lineItem:       [{ position: 30 }]
-  @UI.identification: [{ position: 30 }]
+  @Search.defaultSearchElement: true
+  @Search.fuzzinessThreshold: 0.8
   AcademicTitle;
-  @UI.selectionField: [{ position: 50 }]
-  @UI.lineItem:       [{ position: 40 }]
-  @UI.identification: [{ position: 40 }]
+  @Search.defaultSearchElement: true
+  @Search.fuzzinessThreshold: 0.8
   FirstName;
-  @UI.selectionField: [{ position: 30 }]
-  @UI.lineItem:       [{ position: 60 }]
-  @UI.identification: [{ position: 60 }]
+  @Search.defaultSearchElement: true
+  @Search.fuzzinessThreshold: 0.8
   LastName;
+
 }

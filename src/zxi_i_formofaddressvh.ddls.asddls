@@ -1,5 +1,5 @@
 @AbapCatalog.viewEnhancementCategory: [#NONE]
-@AccessControl.authorizationCheck: #NOT_REQUIRED
+@AccessControl.authorizationCheck: #CHECK
 @EndUserText.label: 'Anrede'
 @Metadata.ignorePropagatedAnnotations: false
 @ObjectModel.usageType:{
@@ -12,7 +12,7 @@
 define view entity ZXI_I_FormOfAddressVH
   as select from I_FormOfAddress
 {
-  key FormOfAddress,
+  key FormOfAddress, 
       /* Associations */
       _Text
 }

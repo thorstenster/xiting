@@ -1,4 +1,4 @@
-@EndUserText.label: 'Form of Address'
+@EndUserText.label: 'Anrede'
 @MappingRole: true
 define role ZXI_I_FORMOFADDRESSVH {
     grant 

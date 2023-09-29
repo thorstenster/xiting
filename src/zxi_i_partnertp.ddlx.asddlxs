@@ -1,7 +1,7 @@
 @Metadata.layer: #PARTNER
 @UI.headerInfo: {
     typeName: 'Partner',
-    typeNamePlural: 'Partber',
+    typeNamePlural: 'Partner',
     title: {
         type: #STANDARD,
         label: 'Partner',
@@ -13,9 +13,31 @@
         value: 'Partner'
     }
 }
+@UI.presentationVariant: [{
+    sortOrder: [{
+        by: 'Partner',
+        direction: #ASC
+    }]
+}]
 annotate view ZXI_I_PartnerTP with
 {
-  @UI.facet: [{
+  @UI.facet: [
+  {   purpose: #HEADER,
+      position: 10,
+      type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'admin1'
+  },
+  {   purpose: #HEADER,
+      position: 20,
+      type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'admin2'
+  },
+  {   purpose: #HEADER,
+      position: 30,
+      type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'admin3'
+  },
+  {
       purpose: #STANDARD,
       position: 10,
       type: #IDENTIFICATION_REFERENCE
@@ -27,8 +49,11 @@ annotate view ZXI_I_PartnerTP with
       type: #LINEITEM_REFERENCE
   }]
   @UI.selectionField: [{ position: 10 }]
-  @UI.lineItem:       [{ position: 10 }]
-  @UI.identification: [{ position: 10 }]
+  @UI.lineItem:       [{ position: 10 },
+                       { position: 70, type: #FOR_ACTION, dataAction: 'partnerLock', label: 'Partner sperren', inline: false, importance: #HIGH },
+                       { position: 80, type: #FOR_ACTION, dataAction: 'partnerUnlock', label: 'Partner entsperren', inline: false, importance: #HIGH }]
+  @UI.identification: [{ position: 10, type: #FOR_ACTION, dataAction: 'partnerLock', label: 'Partner sperren' },
+                       { position: 15, type: #FOR_ACTION, dataAction: 'partnerUnlock', label: 'Partner entsperren' }]
   Partner;
   @UI.lineItem:       [{ position: 20 }]
   @UI.identification: [{ position: 20 }]
@@ -44,10 +69,18 @@ annotate view ZXI_I_PartnerTP with
   @UI.lineItem:       [{ position: 60 }]
   @UI.identification: [{ position: 60 }]
   LastName;
+  @UI.selectionField: [{ position: 65 }]
+  @UI.lineItem:       [{ position: 65 }]
   @UI.identification: [{ position: 65 }]
+  IsLocked;
+  @UI.fieldGroup:     [{ position: 10, qualifier: 'admin1' }]
+  CreatedBy;
+  @UI.fieldGroup:     [{ position: 20, qualifier: 'admin1' }]
+  CreatedAt;
+  @UI.fieldGroup:     [{ position: 10, qualifier: 'admin2' }]
   ChangedBy;
-  @UI.identification: [{ position: 70 }]
-  TimeStamp;
-  @UI.identification: [{ position: 80 }]
+  @UI.fieldGroup:     [{ position: 20, qualifier: 'admin2' }]
+  ChangedAt;
+  @UI.fieldGroup:     [{ position: 10, qualifier: 'admin3' }]
   Uuid;
 }

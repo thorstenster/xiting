@@ -10,10 +10,11 @@
 }
 define view entity ZXI_I_Partner
   as select from zxipartner
-  association [0..*] to ZXI_I_PARTNERROLE     as _PartnerRoles  on $projection.Partner = _PartnerRoles.Partner
+  association [0..*] to ZXI_I_PARTNERROLE     as _PartnerRoles  on $projection.Uuid = _PartnerRoles.ParentUuid
   association [0..1] to ZXI_I_AcademicTitleVH as _AcademicTitle on $projection.AcademicTitle = _AcademicTitle.AcademicTitle
   association [0..1] to ZXI_I_FormOfAddressVH as _FormOfAddress on $projection.Title = _FormOfAddress.FormOfAddress
   association [0..1] to ZXI_I_User            as _ChangedBy     on $projection.ChangedBy = _ChangedBy.UserID
+  association [0..1] to ZXI_I_User            as _CreatedBy     on $projection.CreatedBy = _CreatedBy.UserID
 {
   key   guid       as Uuid,
         partner    as Partner,
@@ -45,13 +46,21 @@ define view entity ZXI_I_Partner
         @Semantics.name.familyName: true
         @EndUserText.label: 'Nachname'
         name_last  as LastName,
+        @EndUserText.label: 'Gesperrt'
+        locked     as IsLocked,
+        @Semantics.systemDateTime.createdAt: true
+        created_at as CreatedAt,
+        @ObjectModel.foreignKey.association: '_CreatedBy'
+        @Semantics.user.createdBy: true
+        created_by as CreatedBy,
         @Semantics.user.localInstanceLastChangedBy: true
         @ObjectModel.foreignKey.association: '_ChangedBy'
         changed_by as ChangedBy,
         @Semantics.systemDateTime.localInstanceLastChangedAt: true
-        timestamp  as TimeStamp,
+        changed_at as ChangedAt,
         _PartnerRoles,
         _AcademicTitle,
         _FormOfAddress,
+        _CreatedBy,
         _ChangedBy
 }

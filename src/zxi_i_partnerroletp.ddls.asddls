@@ -1,5 +1,5 @@
 @AbapCatalog.viewEnhancementCategory: [#NONE]
-@AccessControl.authorizationCheck: #NOT_REQUIRED
+@AccessControl.authorizationCheck: #CHECK
 @EndUserText.label: 'Partner Role'
 @Metadata.allowExtensions: true
 @Metadata.ignorePropagatedAnnotations: false
@@ -13,12 +13,14 @@ define view entity ZXI_I_PartnerRoleTP
   association to parent ZXI_I_PartnerTP as _Partner on $projection.ParentUuid = _Partner.Uuid
 {
   key    Uuid,
-         Partner,
          PartnerRole,
+         CreatedBy,
+         CreatedAt,
          ChangedBy,
-         TimeStamp,
+         ChangedAt,
          ParentUuid,
          /* Associations */
          _Partner,
+         _CreatedBy,
          _ChangedBy
 }

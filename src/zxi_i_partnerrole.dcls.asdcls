@@ -1,0 +1,11 @@
+@EndUserText.label: 'Partner Role'
+@MappingRole: true
+define role ZXI_I_PARTNERROLE {
+    grant 
+        select
+            on
+                ZXI_I_PARTNERROLE
+                    where
+                        (_Partner.Title) = aspect pfcg_auth(ZXIPARTNER, ZXI_TITLE);
+                        
+}

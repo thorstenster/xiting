@@ -18,11 +18,15 @@ define root view entity ZXI_I_PartnerTP
       AcademicTitle,
       FirstName,
       LastName,
-      TimeStamp,
+      IsLocked,
+      CreatedAt,
+      CreatedBy,
+      ChangedAt,
       ChangedBy,
       /* Associations */
       _AcademicTitle,
       _FormOfAddress,
       _PartnerRoles,
+      _CreatedBy,
       _ChangedBy
 }

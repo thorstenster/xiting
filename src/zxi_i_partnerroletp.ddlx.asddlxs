@@ -15,23 +15,39 @@
 }
 annotate view ZXI_I_PartnerRoleTP with
 {
-  @UI.facet: [{
-      purpose: #STANDARD,
+  @UI.facet: [
+  {   purpose: #HEADER,
+      type: #FIELDGROUP_REFERENCE,
+      position: 10,
+      targetQualifier: 'admin1'
+  },
+  {   purpose: #HEADER,
+      type: #FIELDGROUP_REFERENCE,
+      position: 20,
+      targetQualifier: 'admin2'
+  },
+  {   purpose: #HEADER,
+      type: #FIELDGROUP_REFERENCE,
+      position: 30,
+      targetQualifier: 'admin3'
+  },
+  {   purpose: #STANDARD,
       position: 10,
       type: #IDENTIFICATION_REFERENCE
   }]
-  @UI.lineItem:       [{ position: 10 }]
-  @UI.identification: [{ position: 10 }]
-  Partner;
   @UI.lineItem:       [{ position: 20 }]
   @UI.identification: [{ position: 20 }]
   PartnerRole;
-  @UI.identification: [{ position: 25 }]
+  @UI.fieldGroup:     [{ position: 10, qualifier: 'admin1' }]
+  CreatedBy;
+  @UI.fieldGroup:     [{ position: 20, qualifier: 'admin1' }]
+  CreatedAt;
+  @UI.fieldGroup:     [{ position: 10, qualifier: 'admin2' }]
   ChangedBy;
-  @UI.identification: [{ position: 30 }]
-  TimeStamp;
-  @UI.identification: [{ position: 40 }]
+  @UI.fieldGroup:     [{ position: 20, qualifier: 'admin2' }]
+  ChangedAt;
+  @UI.fieldGroup:     [{ position: 10, qualifier: 'admin3' }]
   Uuid;
-  @UI.identification: [{ position: 50 }]
+  @UI.fieldGroup:     [{ position: 20, qualifier: 'admin3' }]
   ParentUuid;
 }

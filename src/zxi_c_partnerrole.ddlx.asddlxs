@@ -1,4 +1,4 @@
-@Metadata.layer: #PARTNER
+@Metadata.layer: #CUSTOMER
 @UI.headerInfo: {
     typeName: 'Rolle',
     typeNamePlural: 'Rollen',
@@ -13,23 +13,7 @@
         value: 'PartnerRole'
     }
 }
-annotate view ZXI_C_PARTNERROLE with
+annotate entity ZXI_C_PARTNERROLE
+    with 
 {
-  @UI.facet: [{
-      purpose: #STANDARD,
-      position: 10,
-      type: #IDENTIFICATION_REFERENCE
-  }]
-  @UI.lineItem:       [{ position: 10 }]
-  @UI.identification: [{ position: 10 }]
-  Partner;
-  @UI.lineItem:       [{ position: 20 }]
-  @UI.identification: [{ position: 20 }]
-  PartnerRole;
-  @UI.identification: [{ position: 30 }]
-  TimeStamp;
-  @UI.identification: [{ position: 30 }]
-  Uuid;
-  @UI.identification: [{ position: 30 }]
-  ParentUuid;
 }

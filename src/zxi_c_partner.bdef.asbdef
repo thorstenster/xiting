@@ -1,0 +1,29 @@
+projection;
+strict ( 1 );
+use draft;
+
+define behavior for ZXI_C_PARTNER alias Partner
+{
+  use create;
+  use update;
+  use delete;
+
+  use action partnerLock;
+  use action partnerUnlock;
+
+  use action Edit;
+  use action Resume;
+  use action Discard;
+  use action Activate;
+  use action Prepare;
+
+  use association _PartnerRoles { create; with draft; }
+}
+
+define behavior for ZXI_C_PARTNERROLE alias PartnerRole
+{
+  use update;
+  use delete;
+
+  use association _Partner { with draft; }
+}

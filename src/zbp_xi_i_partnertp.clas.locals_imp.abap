@@ -18,12 +18,6 @@ CLASS lhc_partnerrole IMPLEMENTATION.
       ENTITY PartnerRole BY \_Partner
       ALL FIELDS WITH CORRESPONDING #( keys )
       RESULT DATA(partners).
-    MODIFY ENTITIES OF ZXI_I_PartnerTP IN LOCAL MODE
-      ENTITY PartnerRole
-      UPDATE FIELDS ( Partner )
-      WITH VALUE #( FOR role IN roles ( %tky = role-%tky
-                                      Partner = partners[ Uuid = role-ParentUuid ]-Partner ) )
-      .
   ENDMETHOD.
 
 ENDCLASS.
@@ -44,13 +38,17 @@ CLASS lhc_Partner DEFINITION INHERITING FROM cl_abap_behavior_handler.
       IMPORTING entities FOR UPDATE partner.
     METHODS partnerlock FOR MODIFY
       IMPORTING keys FOR ACTION partner~partnerlock RESULT result.
+    METHODS get_instance_features FOR INSTANCE FEATURES
+      IMPORTING keys REQUEST requested_features FOR partner RESULT result.
+
+    METHODS partnerunlock FOR MODIFY
+      IMPORTING keys FOR ACTION partner~partnerunlock RESULT result.
 
 ENDCLASS.
 
 CLASS lhc_Partner IMPLEMENTATION.
 
   METHOD get_instance_authorizations.
-
   ENDMETHOD.
 
   METHOD determinePartner.
@@ -97,13 +95,12 @@ CLASS lhc_Partner IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD precheck_create.
-    RETURN.
-    failed-partner = VALUE #( FOR partner IN entities WHERE ( FirstName IS INITIAL )
+    failed-partner = VALUE #( FOR partner IN entities WHERE ( FirstName IS INITIAL AND %control-FirstName = if_abap_behv=>mk-on )
                                 ( %cid        = partner-%cid
                                   %is_draft   = partner-%is_draft
                                   uuid        = partner-uuid
                                   %fail-cause = if_abap_behv=>cause-unspecific ) ).
-    reported-partner = VALUE #( FOR partner IN entities WHERE ( FirstName IS INITIAL )
+    reported-partner = VALUE #( FOR partner IN entities WHERE ( FirstName IS INITIAL AND %control-FirstName = if_abap_behv=>mk-on )
                                 ( %cid        = partner-%cid
                                   %is_draft   = partner-%is_draft
                                   uuid        = partner-uuid
@@ -114,11 +111,10 @@ CLASS lhc_Partner IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD precheck_update.
-    RETURN.
-    failed-partner = VALUE #( FOR partner IN entities WHERE ( FirstName IS INITIAL )
+    failed-partner = VALUE #( FOR partner IN entities WHERE ( FirstName IS INITIAL AND %control-FirstName = if_abap_behv=>mk-on )
                                 ( %tky        = partner-%tky
                                   %fail-cause = if_abap_behv=>cause-unspecific ) ).
-    reported-partner = VALUE #( FOR partner IN entities WHERE ( FirstName IS INITIAL )
+    reported-partner = VALUE #( FOR partner IN entities WHERE ( FirstName IS INITIAL AND %control-FirstName = if_abap_behv=>mk-on )
                                 ( %tky        = partner-%tky
                                   %msg        = new_message_with_text(
                                                    severity = if_abap_behv_message=>severity-error
@@ -127,7 +123,89 @@ CLASS lhc_Partner IMPLEMENTATION.
 
   ENDMETHOD.
 
+  METHOD get_instance_features.
+
+    READ ENTITIES OF ZXI_I_PartnerTP IN LOCAL MODE
+      ENTITY Partner
+      ALL FIELDS
+      WITH CORRESPONDING #( keys )
+      RESULT DATA(partners).
+    result = VALUE #( FOR partner IN partners ( %tky = partner-%tky
+                                                %features-%action-partnerLock   = COND #( WHEN partner-IsLocked = abap_false AND partner-%is_draft = if_abap_behv=>mk-on
+                                                                                    THEN if_abap_behv=>fc-o-enabled
+                                                                                    ELSE if_abap_behv=>fc-o-disabled )
+                                                %features-%action-partnerUnlock = COND #( WHEN partner-IsLocked = abap_true AND partner-%is_draft = if_abap_behv=>mk-on
+                                                                                    THEN if_abap_behv=>fc-o-enabled
+                                                                                    ELSE if_abap_behv=>fc-o-disabled ) ) ).
+  ENDMETHOD.
+
   METHOD partnerLock.
+
+    READ ENTITIES OF ZXI_I_PartnerTP IN LOCAL MODE
+      ENTITY Partner
+      ALL FIELDS
+      WITH CORRESPONDING #( keys )
+      RESULT DATA(partners).
+
+    DELETE partners WHERE IsLocked = abap_true.
+
+    MODIFY ENTITIES OF ZXI_I_PartnerTP IN LOCAL MODE
+      ENTITY Partner
+      UPDATE FIELDS ( IsLocked )
+      WITH VALUE #( FOR partner IN partners ( %tky     = partner-%tky
+                                              IsLocked = abap_true ) )
+      FAILED DATA(mod_failed)
+      REPORTED DATA(mod_reported)
+      MAPPED   DATA(mod_mapped).
+
+    mapped   = CORRESPONDING #( DEEP mod_mapped ).
+    failed   = CORRESPONDING #( DEEP mod_failed ).
+    reported = CORRESPONDING #( DEEP mod_reported ).
+
+    READ ENTITIES OF ZXI_I_PartnerTP IN LOCAL MODE
+      ENTITY Partner
+      ALL FIELDS
+      WITH CORRESPONDING #( partners )
+      RESULT DATA(result_partners).
+
+    result = VALUE #( FOR key IN keys ( %cid_ref = key-%cid_ref
+                                        %tky     = key-%tky
+                                        %param   = partners[ %tky = key-%tky ] ) ).
+
+  ENDMETHOD.
+
+  METHOD partnerUnlock.
+
+    READ ENTITIES OF ZXI_I_PartnerTP IN LOCAL MODE
+      ENTITY Partner
+      ALL FIELDS
+      WITH CORRESPONDING #( keys )
+      RESULT DATA(partners).
+
+    DELETE partners WHERE IsLocked = abap_false.
+
+    MODIFY ENTITIES OF ZXI_I_PartnerTP IN LOCAL MODE
+      ENTITY Partner
+      UPDATE FIELDS ( IsLocked )
+      WITH VALUE #( FOR partner IN partners ( %tky     = partner-%tky
+                                              IsLocked = abap_false ) )
+      FAILED DATA(mod_failed)
+      REPORTED DATA(mod_reported)
+      MAPPED   DATA(mod_mapped).
+
+    mapped   = CORRESPONDING #( DEEP mod_mapped ).
+    failed   = CORRESPONDING #( DEEP mod_failed ).
+    reported = CORRESPONDING #( DEEP mod_reported ).
+
+    READ ENTITIES OF ZXI_I_PartnerTP IN LOCAL MODE
+      ENTITY Partner
+      ALL FIELDS
+      WITH CORRESPONDING #( partners )
+      RESULT DATA(result_partners).
+
+    result = VALUE #( FOR key IN keys ( %cid_ref = key-%cid_ref
+                                        %tky     = key-%tky
+                                        %param   = partners[ %tky = key-%tky ] ) ).
   ENDMETHOD.
 
 ENDCLASS.

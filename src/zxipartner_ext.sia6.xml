@@ -4,7 +4,7 @@
   <asx:values>
    <SIA6>
     <MAIN_OBJECT>
-     <NAME>ZXI_PARTNER_EXT</NAME>
+     <NAME>ZXIPARTNER_EXT</NAME>
      <TYPE>SIA6</TYPE>
      <DESCRIPTION>Partner</DESCRIPTION>
      <RESPONSIBLE>CB9980000000</RESPONSIBLE>
@@ -15,52 +15,103 @@
      </PACKAGE_REF>
      <ABAP_LANGU_VERSION>5</ABAP_LANGU_VERSION>
     </MAIN_OBJECT>
-    <APP_ID>ZXI_PARTNER_EXT</APP_ID>
+    <APP_ID>ZXIPARTNER_EXT</APP_ID>
     <APP_TYPE>EXT</APP_TYPE>
     <ABAP_LANGUAGE_VERSION>5</ABAP_LANGUAGE_VERSION>
+    <UI_APP_ID>ZXIPARTNER_UI5R</UI_APP_ID>
     <SERVICE>
      <item>
       <REL_NAME>ZXI_PARTNER_O2_UI                  0001</REL_NAME>
       <REL_TYPE>IWSV</REL_TYPE>
-      <APP_ID>ZXI_PARTNER_EXT</APP_ID>
+      <APP_ID>ZXIPARTNER_EXT</APP_ID>
       <SRVC_NAME>9A0BB60EF46B20F0BC19E5E141942E</SRVC_NAME>
       <SRVC_TYPE>HT</SRVC_TYPE>
+      <UIAD_SRC>ZXIPARTNER_UI5R</UIAD_SRC>
       <TYPE_TEXT>OData V2</TYPE_TEXT>
      </item>
     </SERVICE>
     <AUTH>
      <item>
       <AUTH_OBJECT>ZXIPARTNER</AUTH_OBJECT>
-      <STATUS>S</STATUS>
+      <STATUS>M</STATUS>
       <TEXT>ZXIPARTNER</TEXT>
       <AUTH_ITEM>
        <item>
-        <UUID>1jPei98YHu6X1sj0T3OPjw==</UUID>
+        <UUID>1jPei98YHu6X1zqOo1Cx</UUID>
         <AUTH_OBJECT>ZXIPARTNER</AUTH_OBJECT>
         <AUTH_OBJECT_INSTANCE>0001</AUTH_OBJECT_INSTANCE>
         <IBS_SOURCE>9A0BB60EF46B20F0BC19E5E141942E</IBS_SOURCE>
         <IBS_SOURCE_TYPE>HT</IBS_SOURCE_TYPE>
         <TEXT>ZXIPARTNER</TEXT>
-        <STATUS>S</STATUS>
+        <STATUS>M</STATUS>
         <VALUES>
          <item>
           <FIELD>ACTVT</FIELD>
           <VALUE>Hinzufügen oder Erzeugen,Ändern,Anzeigen,Löschen</VALUE>
           <VALUES>
            <item>
-            <UUID>1jPei98YHu6X1sj0T3Ovjw==</UUID>
+            <UUID>1jPei98YHu6X1zqOo1DR</UUID>
             <LOW_VALUE>01</LOW_VALUE>
            </item>
            <item>
-            <UUID>1jPei98YHu6X1sj0T3PPjw==</UUID>
+            <UUID>1jPei98YHu6X1zqOo1Dx</UUID>
             <LOW_VALUE>02</LOW_VALUE>
            </item>
            <item>
-            <UUID>1jPei98YHu6X1sj0T3Pvjw==</UUID>
+            <UUID>1jPei98YHu6X1zqOo1ER</UUID>
             <LOW_VALUE>03</LOW_VALUE>
            </item>
            <item>
-            <UUID>1jPei98YHu6X1sj0T3QPjw==</UUID>
+            <UUID>1jPei98YHu6X1zqOo1Ex</UUID>
+            <LOW_VALUE>06</LOW_VALUE>
+           </item>
+          </VALUES>
+          <TEXT>Aktivität</TEXT>
+          <STATUS>S</STATUS>
+          <IS_ACTVT>X</IS_ACTVT>
+         </item>
+         <item>
+          <FIELD>ZXI_TITLE</FIELD>
+          <VALUE>0003</VALUE>
+          <VALUES>
+           <item>
+            <UUID>1jPei98YHu6X1zqOo1FR</UUID>
+            <LOW_VALUE>0003</LOW_VALUE>
+           </item>
+          </VALUES>
+          <TEXT>Schlüssel</TEXT>
+          <STATUS>M</STATUS>
+         </item>
+        </VALUES>
+       </item>
+       <item>
+        <UUID>1jPei98YHu6X1zqOo1Fx</UUID>
+        <AUTH_OBJECT>ZXIPARTNER</AUTH_OBJECT>
+        <AUTH_OBJECT_INSTANCE>0002</AUTH_OBJECT_INSTANCE>
+        <IBS_SOURCE>9A0BB60EF46B20F0BC19E5E141942E</IBS_SOURCE>
+        <IBS_SOURCE_TYPE>HT</IBS_SOURCE_TYPE>
+        <TEXT>ZXIPARTNER</TEXT>
+        <STATUS>S</STATUS>
+        <INACTIVE>X</INACTIVE>
+        <VALUES>
+         <item>
+          <FIELD>ACTVT</FIELD>
+          <VALUE>Hinzufügen oder Erzeugen,Ändern,Anzeigen,Löschen</VALUE>
+          <VALUES>
+           <item>
+            <UUID>1jPei98YHu6X1zqOo1GR</UUID>
+            <LOW_VALUE>01</LOW_VALUE>
+           </item>
+           <item>
+            <UUID>1jPei98YHu6X1zqOo1Gx</UUID>
+            <LOW_VALUE>02</LOW_VALUE>
+           </item>
+           <item>
+            <UUID>1jPei98YHu6X1zqOo1HR</UUID>
+            <LOW_VALUE>03</LOW_VALUE>
+           </item>
+           <item>
+            <UUID>1jPei98YHu6X1zqOo1Hx</UUID>
             <LOW_VALUE>06</LOW_VALUE>
            </item>
           </VALUES>
@@ -73,11 +124,11 @@
           <VALUE>0001,0002</VALUE>
           <VALUES>
            <item>
-            <UUID>1jPei98YHu6X1sj0T3Qvjw==</UUID>
+            <UUID>1jPei98YHu6X1zqOo1IR</UUID>
             <LOW_VALUE>0001</LOW_VALUE>
            </item>
            <item>
-            <UUID>1jPei98YHu6X1sj0T3RPjw==</UUID>
+            <UUID>1jPei98YHu6X1zqOo1Ix</UUID>
             <LOW_VALUE>0002</LOW_VALUE>
            </item>
           </VALUES>

@@ -1,5 +1,5 @@
 @AbapCatalog.viewEnhancementCategory: [#NONE]
-@AccessControl.authorizationCheck: #NOT_REQUIRED
+@AccessControl.authorizationCheck: #CHECK
 @EndUserText.label: 'Partner'
 @Metadata.allowExtensions: true
 @Metadata.ignorePropagatedAnnotations: false
@@ -8,19 +8,25 @@
     sizeCategory: #S,
     dataClass: #MIXED
 }
-define view entity ZXI_C_PARTNER
-  as select from ZXI_I_Partner
-  association [0..*] to ZXI_C_PARTNERROLE as _PartnerRoles on $projection.Partner = _PartnerRoles.Partner
+define root view entity ZXI_C_PARTNER
+  provider contract transactional_query
+  as projection on ZXI_I_PartnerTP
 {
-  key Partner,
+  key Uuid,
+      Partner,
       Title,
       AcademicTitle,
       FirstName,
       LastName,
-      TimeStamp,
-      Uuid,
+      IsLocked,
+      CreatedAt,
+      CreatedBy,
+      ChangedAt,
+      ChangedBy,
       /* Associations */
       _AcademicTitle,
+      _ChangedBy,
+      _CreatedBy,
       _FormOfAddress,
-      _PartnerRoles
+      _PartnerRoles : redirected to composition child ZXI_C_PARTNERROLE
 }

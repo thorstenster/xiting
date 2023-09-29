@@ -6,7 +6,7 @@
     <DDLNAME>ZXI_C_PARTNERROLE</DDLNAME>
     <DDLANGUAGE>D</DDLANGUAGE>
     <DDTEXT>Partner Role</DDTEXT>
-    <SOURCE_TYPE>W</SOURCE_TYPE>
+    <SOURCE_TYPE>P</SOURCE_TYPE>
    </DDLS>
   </asx:values>
  </asx:abap>
