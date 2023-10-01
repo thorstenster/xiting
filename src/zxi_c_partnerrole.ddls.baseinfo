@@ -9,6 +9,7 @@
 [
 "ZXI_C_PARTNER",
 "ZXI_I_PARTNERTP",
+"ZXI_I_ROLE",
 "ZXI_I_USER"
 ],
 "BASE":

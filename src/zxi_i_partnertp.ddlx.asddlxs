@@ -10,7 +10,7 @@
     description: {
         type: #STANDARD,
         label: 'Partner',
-        value: 'Partner'
+        value: 'FullName'
     }
 }
 @UI.presentationVariant: [{
@@ -19,6 +19,7 @@
         direction: #ASC
     }]
 }]
+@UI.textArrangement: #TEXT_ONLY
 annotate view ZXI_I_PartnerTP with
 {
   @UI.facet: [
@@ -54,6 +55,7 @@ annotate view ZXI_I_PartnerTP with
                        { position: 80, type: #FOR_ACTION, dataAction: 'partnerUnlock', label: 'Partner entsperren', inline: false, importance: #HIGH }]
   @UI.identification: [{ position: 10, type: #FOR_ACTION, dataAction: 'partnerLock', label: 'Partner sperren' },
                        { position: 15, type: #FOR_ACTION, dataAction: 'partnerUnlock', label: 'Partner entsperren' }]
+  @UI.textArrangement: #TEXT_SEPARATE
   Partner;
   @UI.lineItem:       [{ position: 20 }]
   @UI.identification: [{ position: 20 }]
@@ -62,25 +64,31 @@ annotate view ZXI_I_PartnerTP with
   @UI.identification: [{ position: 30 }]
   AcademicTitle;
   @UI.selectionField: [{ position: 50 }]
-  @UI.lineItem:       [{ position: 40 }]
   @UI.identification: [{ position: 40 }]
   FirstName;
   @UI.selectionField: [{ position: 30 }]
-  @UI.lineItem:       [{ position: 60 }]
   @UI.identification: [{ position: 60 }]
   LastName;
+  @UI.lineItem:       [{ position: 40 }]
+  FullName;
   @UI.selectionField: [{ position: 65 }]
   @UI.lineItem:       [{ position: 65 }]
   @UI.identification: [{ position: 65 }]
   IsLocked;
+  @UI.textArrangement: #TEXT_ONLY
   @UI.fieldGroup:     [{ position: 10, qualifier: 'admin1' }]
   CreatedBy;
   @UI.fieldGroup:     [{ position: 20, qualifier: 'admin1' }]
-  CreatedAt;
+  CreatedAtDate;
+  @UI.fieldGroup:     [{ position: 30, qualifier: 'admin1' }]
+  CreatedAtTime;
+  @UI.textArrangement: #TEXT_ONLY
   @UI.fieldGroup:     [{ position: 10, qualifier: 'admin2' }]
   ChangedBy;
   @UI.fieldGroup:     [{ position: 20, qualifier: 'admin2' }]
-  ChangedAt;
-  @UI.fieldGroup:     [{ position: 10, qualifier: 'admin3' }]
+  ChangedAtDate;
+  @UI.fieldGroup:     [{ position: 30, qualifier: 'admin2' }]
+  ChangedAtTime;
+  @UI.hidden: true
   Uuid;
 }

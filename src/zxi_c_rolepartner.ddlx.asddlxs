@@ -5,15 +5,15 @@
     title: {
         type: #STANDARD,
         label: 'Rolle',
-        value: 'PartnerRole'
+        value: 'RoleUuid'
     },
     description: {
         type: #STANDARD,
         label: 'Rolle',
-        value: '_Role.RoleDescription'
+        value: 'RoleUuid'
     }
 }
-annotate entity ZXI_C_PARTNERROLE
-    with 
+@UI.textArrangement: #TEXT_ONLY
+annotate view ZXI_C_ROLEPARTNER with
 {
 }

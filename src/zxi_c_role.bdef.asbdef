@@ -1,0 +1,72 @@
+managed implementation in class zbp_xi_c_role unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZXI_C_Role alias Role
+persistent table zxirole
+draft table zxiroled
+
+lock master total etag ChangedAt
+etag master ChangedAt
+authorization master ( instance )
+
+{
+  create;
+  update;
+  delete;
+
+  field ( readonly ) RoleUuid, CreatedAt, CreatedBy, ChangedAt, ChangedBy, Active;
+  field ( readonly : update ) Role;
+
+  field ( numbering : managed ) RoleUuid;
+
+  action ( features : instance ) roleActivate result [1] $self;
+  action ( features : instance ) roleDeactivate result [1] $self;
+
+  draft action Edit;
+  draft action Resume;
+  draft action Discard;
+  draft action Activate optimized;
+  draft determine action Prepare;
+
+  mapping for zxirole
+    {
+      RoleUuid        = guid;
+      Role            = role;
+      RoleDescription = role_description;
+      Active          = active;
+      CreatedAt       = created_at;
+      CreatedBy       = created_by;
+      ChangedAt       = changed_at;
+      ChangedBy       = changed_by;
+    }
+
+  association _RolePartner { create; with draft; }
+}
+
+define behavior for ZXI_C_ROLEPARTNER alias RolePartner
+persistent table zxirolepartner
+draft table zxirolepartnerd
+lock dependent by _Role
+authorization dependent by _Role
+etag master ChangedAt
+{
+  update;
+  delete;
+  field ( numbering : managed ) RolePartnerUuid;
+
+  field ( readonly ) RolePartnerUuid, RoleUuid;
+
+  association _Role { with draft; }
+
+  mapping for zxirolepartner
+    {
+      RolePartnerUuid = rolepartneruuid;
+      PartnerUuid     = partneruuid;
+      RoleUuid        = roleuuid;
+      CreatedAt       = created_at;
+      CreatedBy       = created_by;
+      ChangedAt       = changed_at;
+      ChangedBy       = changed_by;
+    }
+}

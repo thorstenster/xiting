@@ -8,16 +8,19 @@
     sizeCategory: #S,
     dataClass: #MIXED
 }
+@ObjectModel.semanticKey: [ 'Partner' ]
 define view entity ZXI_I_Partner
   as select from zxipartner
+  association [0..1] to ZXI_I_PARTNERVH       as _PartnerVH     on $projection.Partner = _PartnerVH.Partner
   association [0..*] to ZXI_I_PARTNERROLE     as _PartnerRoles  on $projection.Uuid = _PartnerRoles.ParentUuid
   association [0..1] to ZXI_I_AcademicTitleVH as _AcademicTitle on $projection.AcademicTitle = _AcademicTitle.AcademicTitle
   association [0..1] to ZXI_I_FormOfAddressVH as _FormOfAddress on $projection.Title = _FormOfAddress.FormOfAddress
   association [0..1] to ZXI_I_User            as _ChangedBy     on $projection.ChangedBy = _ChangedBy.UserID
   association [0..1] to ZXI_I_User            as _CreatedBy     on $projection.CreatedBy = _CreatedBy.UserID
 {
-  key   guid       as Uuid,
-        partner    as Partner,
+        @ObjectModel.text.element: [ 'FullName' ]
+  key   guid                                      as Uuid,
+        partner                                   as Partner,
         @ObjectModel.foreignKey.association: '_FormOfAddress'
         @Consumption.valueHelpDefinition: [{
             entity: {
@@ -28,7 +31,7 @@ define view entity ZXI_I_Partner
             useForValidation: true
         }]
         @EndUserText.label: 'Anrede'
-        title      as Title,
+        title                                     as Title,
         @Consumption.valueHelpDefinition: [{
             entity: {
                 name: 'ZXI_I_AcademicTitleVH',
@@ -39,28 +42,33 @@ define view entity ZXI_I_Partner
         }]
         @ObjectModel.foreignKey.association: '_AcademicTitle'
         @EndUserText.label: 'Akademischer Titel'
-        acad_title as AcademicTitle,
+        acad_title                                as AcademicTitle,
+        @EndUserText.label: 'Vollständiger Name'
+        @Semantics.text: true
+        concat_with_space(name_first,name_last,1) as FullName,
         @Semantics.name.givenName: true
         @EndUserText.label: 'Vorname'
-        name_first as FirstName,
+        @Semantics.text: true
+        name_first                                as FirstName,
         @Semantics.name.familyName: true
         @EndUserText.label: 'Nachname'
-        name_last  as LastName,
+        name_last                                 as LastName,
         @EndUserText.label: 'Gesperrt'
-        locked     as IsLocked,
+        locked                                    as IsLocked,
         @Semantics.systemDateTime.createdAt: true
-        created_at as CreatedAt,
+        created_at                                as CreatedAt,
         @ObjectModel.foreignKey.association: '_CreatedBy'
         @Semantics.user.createdBy: true
-        created_by as CreatedBy,
+        created_by                                as CreatedBy,
         @Semantics.user.localInstanceLastChangedBy: true
         @ObjectModel.foreignKey.association: '_ChangedBy'
-        changed_by as ChangedBy,
+        changed_by                                as ChangedBy,
         @Semantics.systemDateTime.localInstanceLastChangedAt: true
-        changed_at as ChangedAt,
+        changed_at                                as ChangedAt,
         _PartnerRoles,
         _AcademicTitle,
         _FormOfAddress,
         _CreatedBy,
-        _ChangedBy
+        _ChangedBy,
+        _PartnerVH
 }

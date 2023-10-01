@@ -1,0 +1,93 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo: {
+    typeName: 'Rolle',
+    typeNamePlural: 'Rollen',
+    title: {
+        type: #STANDARD,
+        label: 'Rolle',
+        value: 'Role'
+    },
+    description: {
+        type: #STANDARD,
+        label: 'Rolle',
+        value: 'RoleDescription'
+    }
+}
+@UI.textArrangement: #TEXT_ONLY
+annotate view ZXI_I_Role with
+{
+  @UI.facet: [{
+      purpose: #HEADER,
+      position: 10,
+      targetQualifier: 'admin1',
+      type: #FIELDGROUP_REFERENCE
+  },
+  {   purpose: #HEADER,
+      position: 20,
+      targetQualifier: 'admin2',
+      type: #FIELDGROUP_REFERENCE
+  },
+  {   purpose: #HEADER,
+      position: 30,
+      targetQualifier: 'admin3',
+      type: #FIELDGROUP_REFERENCE
+  },
+  {   purpose: #STANDARD,
+      position: 10,
+      id: 'collection1',
+      label: 'Rolle',
+      type: #COLLECTION
+  },
+  {   purpose: #STANDARD,
+      position: 20,
+      id: 'collection2',
+      label: 'Zugeordnete Partner',
+      type: #COLLECTION
+  },
+  {   purpose: #STANDARD,
+      parentId: 'collection1',
+      position: 10,
+      targetQualifier: 'main',
+      type: #FIELDGROUP_REFERENCE
+  },
+  {   purpose: #STANDARD,
+      parentId: 'collection2',
+      position: 20,
+      targetQualifier: 'partners',
+      type: #FIELDGROUP_REFERENCE
+  }]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.lineItem:       [{ position: 10 }, 
+                       { position: 10, type: #FOR_ACTION, dataAction: 'roleActivate',   label: 'Aktivieren' },
+                       { position: 20, type: #FOR_ACTION, dataAction: 'roleDeactivate', label: 'Deaktivieren' }
+  ]
+  @UI.identification: [{ position: 10, type: #FOR_ACTION, dataAction: 'roleActivate',   label: 'Aktivieren' }]
+  @UI.fieldGroup:     [{ position: 10, qualifier: 'main' }]
+  @UI.textArrangement: #TEXT_SEPARATE
+  Role;
+  @UI.selectionField: [{ position: 20 }]
+  @UI.lineItem:       [{ position: 20 }]
+  @UI.identification: [{ position: 20, type: #FOR_ACTION, dataAction: 'roleDeactivate', label: 'Deaktivieren' }]
+  @UI.fieldGroup:     [{ position: 20, qualifier: 'main' }]
+  RoleDescription;
+  @UI.selectionField: [{ position: 30 }]
+  @UI.lineItem:       [{ position: 30 }]
+  @UI.fieldGroup:     [{ position: 30, qualifier: 'main' }]
+  @EndUserText.label: 'Rolle ist aktiv'
+  Active;
+  @UI.fieldGroup: [{ position: 10, qualifier: 'admin1' }]
+  CreatedBy;
+  @UI.fieldGroup: [{ position: 30, qualifier: 'admin1' }]
+  CreatedAtDate;
+  @UI.fieldGroup: [{ position: 40, qualifier: 'admin1' }]
+  CreatedAtTime;
+  @UI.fieldGroup: [{ position: 30, qualifier: 'admin2' }]
+  ChangedBy;
+  @UI.fieldGroup: [{ position: 40, qualifier: 'admin2' }]
+  ChangedAtDate;
+  @UI.fieldGroup: [{ position: 60, qualifier: 'admin2' }]
+  ChangedAtTime;
+  @UI.hidden: true
+  RoleUuid;
+
+}

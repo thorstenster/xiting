@@ -1,0 +1,33 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo: {
+    typeName: 'Rolle',
+    typeNamePlural: 'Rollen',
+    title: {
+        type: #STANDARD,
+        label: 'Rolle',
+        value: 'Role'
+    },
+    description: {
+        type: #STANDARD,
+        label: 'Rolle',
+        value: 'RoleDescription'
+    }
+}
+@Search.searchable: true
+annotate view ZXI_C_Role with
+{
+  @Search.defaultSearchElement: true
+  @Search.fuzzinessThreshold: 0.8
+  Role;
+  @Search.defaultSearchElement: true
+  @Search.fuzzinessThreshold: 0.8
+  RoleDescription;
+  @UI.textArrangement: #TEXT_ONLY
+  CreatedBy;
+  @UI.textArrangement: #TEXT_ONLY
+  ChangedBy;
+  @EndUserText.label: 'Partner'
+  @UI.fieldGroup: [{ position: 50, qualifier: 'partners', value: '_RolePartner.PartnerUuid' }]
+  @UI.lineItem: [{ position: 50, value: '_RolePartner.PartnerUuid' }]
+  _RolePartner;
+}

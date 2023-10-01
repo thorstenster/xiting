@@ -13,8 +13,17 @@ define view entity ZXI_I_PARTNERROLE
   association [1]    to ZXI_I_Partner as _Partner   on $projection.ParentUuid = _Partner.Uuid
   association [0..1] to ZXI_I_User    as _ChangedBy on $projection.ChangedBy = _ChangedBy.UserID
   association [0..1] to ZXI_I_User    as _CreatedBy on $projection.CreatedBy = _CreatedBy.UserID
+  /*+[hideWarning] { "IDS" : [ "CARDINALITY_CHECK" ] }*/
+  association [0..1] to ZXI_I_Role    as _Role      on $projection.PartnerRole = _Role.Role
 {
   key guid        as Uuid,
+      @ObjectModel.foreignKey.association: '_Role'
+      @Consumption.valueHelpDefinition: [{
+          entity: {
+              name: 'ZXI_I_Role',
+              element: 'Role'
+          }
+      }]
       @EndUserText.label: 'Rolle'
       partnerrole as PartnerRole,
       @Semantics.systemDateTime.createdAt: true
@@ -31,5 +40,6 @@ define view entity ZXI_I_PARTNERROLE
       parent_guid as ParentUuid,
       _Partner,
       _CreatedBy,
-      _ChangedBy
+      _ChangedBy,
+      _Role
 }

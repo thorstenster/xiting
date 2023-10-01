@@ -22,9 +22,7 @@ define view entity ZXI_I_PARTNERVH
       AcademicTitle,
       ZXI_I_Partner._FormOfAddress._Text[ Language = $session.system_language ].FormOfAddressName,
       ZXI_I_Partner._AcademicTitle._Text[ Language = $session.system_language ].AcademicTitleName,
-      @EndUserText.label: 'Vollständiger Name'
-      @Semantics.text: true
-      concat_with_space(FirstName,LastName,1) as FullName,
+      FullName,
       FirstName,
       LastName,
       IsLocked,

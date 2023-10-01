@@ -7,4 +7,9 @@ define service ZXI_PARTNER_SERVICE {
   expose ZXI_I_AcademicTitleVH as AcademicTitleVH;
   expose ZXI_I_User            as UserVH;
   expose ZXI_I_PARTNERVH       as PartnerVH;
+  expose ZXI_C_Role            as Role;
+  expose ZXI_I_Role            as RoleVH;
+  expose ZXI_C_ROLEPARTNER     as RolePartner;
+  expose ZXI_I_RolePartner;
+  expose ZXI_I_Partner;
 }

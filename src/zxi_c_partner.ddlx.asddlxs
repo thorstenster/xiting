@@ -10,7 +10,7 @@
     description: {
         type: #STANDARD,
         label: 'Partner',
-        value: 'Partner'
+        value: 'FullName'
     }
 }
 @UI.presentationVariant: [{
@@ -27,9 +27,11 @@ annotate entity ZXI_C_PARTNER with
   Partner;
   @Search.defaultSearchElement: true
   @Search.fuzzinessThreshold: 0.8
+  @UI.textArrangement: #TEXT_ONLY
   Title;
   @Search.defaultSearchElement: true
   @Search.fuzzinessThreshold: 0.8
+  @UI.textArrangement: #TEXT_ONLY
   AcademicTitle;
   @Search.defaultSearchElement: true
   @Search.fuzzinessThreshold: 0.8
@@ -37,5 +39,4 @@ annotate entity ZXI_C_PARTNER with
   @Search.defaultSearchElement: true
   @Search.fuzzinessThreshold: 0.8
   LastName;
-
 }

@@ -20,6 +20,7 @@ define view entity ZXI_I_PartnerRoleTP
          ChangedAt,
          ParentUuid,
          /* Associations */
+         _Role,
          _Partner,
          _CreatedBy,
          _ChangedBy
